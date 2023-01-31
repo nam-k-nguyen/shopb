@@ -1,2 +1,2 @@
 # shopb
- front-end for e-commerce app
+ Front-end for E-commerce app

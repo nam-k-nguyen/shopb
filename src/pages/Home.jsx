@@ -1,14 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ShopTwoTone, LoginOutlined, UserAddOutlined } from '@ant-design/icons'
-
-import NavBar from '../components/NavBar'
 import { Button, Space, Typography } from 'antd'
 
 const { Title } = Typography
 
 export default function Home() {
-    let a = (
+    return (
         <div style={{ display: 'flex', height: '100%', gap: '20px', alignItems: 'center' }}>
             {/* Left side */}
             <Space style={{ flex: 1, height: '100%', justifyContent: 'center' }} direction="vertical" align='center'>
@@ -43,9 +41,5 @@ export default function Home() {
                 </Space>
             </Space>
         </div>
-    )
-
-    return (
-        a
     )
 }

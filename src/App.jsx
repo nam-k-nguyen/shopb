@@ -1,23 +1,32 @@
 import './App.css'
+import { Routes, Route, Outlet, Navigate } from 'react-router-dom'
+
+import GeneralLayout from './layouts/GeneralLayout'
+
 import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
 import SignIn from './pages/SignIn'
 import Register from './pages/Register'
-import { Routes, Route } from 'react-router-dom'
-import LayoutOne from './layouts/LayoutOne'
 
 function App() {
+  const isAuthenticated = false
 
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<LayoutOne />}>
-          <Route index={true} element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/register" element={<Register />} />
-        </Route>
-      </Routes>
+      <GeneralLayout isAuthenticated={isAuthenticated}>
+        <Routes>
+          {/* Unprotected Routes, navigate to dashboard if user is authenticated */}
+          <Route element={isAuthenticated ? <Navigate to="/dashboard" /> : <Outlet />}>
+            <Route index element={<Home />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
+          {/* Protected Routes, navigate to home page if user is not authenticated */}
+          <Route element={isAuthenticated ? <Outlet /> : <Navigate to="/" />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
+        </Routes>
+      </GeneralLayout>
     </div>
   )
 }
